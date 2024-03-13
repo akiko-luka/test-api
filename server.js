@@ -2,7 +2,7 @@ import express from "express";
 
 console.log();
 const app = express();
-const PORT = process.env.PORT || 9000
+const PORT = process.env.PORT
 const environment = process.env.NODE_ENV;
 
 app.get("/", (req, res) => {
