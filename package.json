@@ -5,8 +5,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "node --watch --inspect server.js",
-    "start": "node server.js"
+    "server": "node --watch --inspect server.js development",
+    "start": "node server.js production"
   },
   "keywords": [],
   "author": "",
