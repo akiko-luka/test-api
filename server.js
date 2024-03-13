@@ -1,9 +1,10 @@
 import express, { response } from "express";
 
 const app = express();
-const PORT = process.env.PORT
-const environment = process.env.NODE_ENV;
-const API_KEY = process.env.API_KEY
+// const PORT = process.env.PORT
+// const environment = process.env.NODE_ENV;
+// const API_KEY = process.env.API_KEY
+const { PORT, environment, API_KEY } = process.env;
 
 app.get("/", (req, res) => {
   res.send("welcome");
@@ -21,13 +22,15 @@ app.get("/greeting", (req, res) => {
 });
 
 app.get("/weather/:location", async (req, res) => {
-  const response = await fetch(`https://api.tomorrow.io/v4/weather/forecast?location=${req.params.location}&apikey=${API_KEY}`)
-  const data = await response.json()
-  res.send(data)
-})
+  const response = await fetch(
+    `https://api.tomorrow.io/v4/weather/forecast?location=${req.params.location}&apikey=${API_KEY}`
+  );
+  const data = await response.json();
+  res.send("Current temperature: " + data.timelines.minutely[0].values.temperature);
+});
 
 app.listen(PORT, () => {
-  if(environment === "development") {
+  if (environment === "development") {
     console.log(`server running on http://localhost:${PORT}`);
   } else {
     console.log(`server running on production`);
